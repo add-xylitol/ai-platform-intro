@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="企业AI共性能力平台 — 从每个人的文档，到项目全知的AI，再到公司级能力底座。让每一个项目的知识不再散落、不再丢失、不再依赖某个人。">
+<title>企业AI共性能力平台 — 产品介绍</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%234F46E5'/><text x='16' y='22' font-size='16' font-weight='700' fill='white' text-anchor='middle' font-family='system-ui'>AI</text></svg>">
+<style>
+/* ===== Reset & Root Variables ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#4F46E5;
+  --primary-light:#6366F1;
+  --primary-dark:#3730A3;
+  --primary-bg:#EEF2FF;
+  --accent:#0D9488;
+  --accent-light:#14B8A6;
+  --accent-bg:#F0FDFA;
+  --warm-slate:#1C1917;
+  --bg:#F5F5F4;
+  --bg-alt:#FFFFFF;
+  --text:#1C1917;
+  --text-secondary:#57534E;
+  --text-muted:#A8A29E;
+  --border:#E7E5E4;
+  --border-light:#F5F5F4;
+  --card-bg:#FFFFFF;
+  --shadow-sm:0 1px 2px rgba(0,0,0,0.05);
+  --shadow:0 1px 3px rgba(0,0,0,0.1),0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md:0 4px 6px -1px rgba(0,0,0,0.1),0 2px 4px -1px rgba(0,0,0,0.06);
+  --shadow-lg:0 10px 15px -3px rgba(0,0,0,0.1),0 4px 6px -2px rgba(0,0,0,0.05);
+  --radius:8px;
+  --radius-lg:12px;
+  --radius-xl:16px;
+  --font-sans:'PingFang SC','Microsoft YaHei','Helvetica Neue',Arial,sans-serif;
+  --font-mono:'SF Mono','Fira Code',Consolas,monospace;
+  --nav-h:56px;
+}
+html{scroll-behavior:smooth;scroll-padding-top:var(--nav-h)}
+body{
+  font-family:var(--font-sans);
+  color:var(--text);
+  background:var(--bg);
+  line-height:1.7;
+  font-size:16px;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{display:block;max-width:100%}
+a{color:var(--primary);text-decoration:none}
+a:hover{text-decoration:underline}
+ul,ol{list-style:none}
+
+/* ===== Container ===== */
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+/* ===== Icon ===== */
+.icon{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;display:inline-block;vertical-align:middle;flex-shrink:0}
+.icon-sm{width:16px;height:16px}
+.icon-lg{width:24px;height:24px}
+.icon-xl{width:32px;height:32px}
+
+/* ===== Hero ===== */
+.hero{
+  background:linear-gradient(135deg,#1a1b2e 0%,#2d2b5e 30%,#4F46E5 65%,#0D9488 100%);
+  color:#fff;
+  padding:100px 24px 80px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';
+  position:absolute;
+  top:-50%;left:-50%;
+  width:200%;height:200%;
+  background:radial-gradient(circle at 30% 50%,rgba(99,102,241,0.15) 0%,transparent 50%),
+             radial-gradient(circle at 70% 50%,rgba(13,148,136,0.12) 0%,transparent 50%);
+  animation:heroFloat 20s ease-in-out infinite;
+}
+@keyframes heroFloat{0%,100%{transform:translate(0,0)}50%{transform:translate(-2%,1%)}}
+.hero .container{position:relative;z-index:1}
+.hero-badge{
+  display:inline-block;
+  background:rgba(255,255,255,0.12);
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,0.2);
+  border-radius:20px;
+  padding:6px 18px;
+  font-size:13px;
+  margin-bottom:24px;
+  letter-spacing:1px;
+}
+.hero h1{
+  font-size:clamp(32px,5vw,56px);
+  font-weight:800;
+  line-height:1.2;
+  margin-bottom:24px;
+  letter-spacing:-0.02em;
+}
+.hero-subtitle{
+  font-size:clamp(16px,2.5vw,21px);
+  font-weight:300;
+  opacity:0.92;
+  max-width:760px;
+  margin:0 auto 16px;
+  line-height:1.7;
+}
+.hero-nav{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:8px;
+}
+.hero-nav a{
+  background:rgba(255,255,255,0.1);
+  border:1px solid rgba(255,255,255,0.25);
+  color:#fff;
+  padding:8px 16px;
+  border-radius:20px;
+  font-size:13px;
+  transition:all 0.2s;
+  text-decoration:none;
+}
+.hero-nav a:hover{background:rgba(255,255,255,0.2);text-decoration:none}
+
+/* ===== Navigation ===== */
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  height:var(--nav-h);
+  display:flex;align-items:center;
+  transition:transform 0.3s,opacity 0.3s;
+  transform:translateY(0);opacity:1;
+}
+.nav.visible{transform:translateY(0);opacity:1}
+.nav .container{display:flex;align-items:center;gap:4px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.nav .container::-webkit-scrollbar{display:none}
+.nav-brand{font-weight:700;font-size:14px;color:var(--primary);margin-right:16px;white-space:nowrap;flex-shrink:0}
+.nav a{color:var(--text-secondary);font-size:13px;padding:6px 12px;border-radius:6px;white-space:nowrap;transition:all 0.2s;text-decoration:none}
+.nav a:hover{background:var(--primary-bg);color:var(--primary);text-decoration:none}
+.nav a.active{background:var(--primary);color:#fff}
+
+/* ===== Sections ===== */
+.section{
+  padding:80px 24px;
+  opacity:0;transform:translateY(30px);
+  transition:opacity 0.6s ease,transform 0.6s ease;
+}
+.section.visible{opacity:1;transform:translateY(0)}
+.section:nth-child(even){background:var(--bg-alt)}
+.section:nth-child(odd){background:var(--bg)}
+.section-label{
+  display:inline-block;font-size:12px;font-weight:600;
+  color:var(--primary);background:var(--primary-bg);
+  padding:4px 12px;border-radius:4px;letter-spacing:1px;margin-bottom:12px;
+}
+.section-title{
+  font-size:clamp(24px,3.5vw,36px);font-weight:700;
+  line-height:1.3;margin-bottom:12px;color:var(--warm-slate);
+}
+.section-desc{
+  font-size:16px;color:var(--text-secondary);
+  max-width:720px;margin-bottom:40px;line-height:1.8;
+}
+
+/* ===== Cards ===== */
+.card{
+  background:var(--card-bg);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:24px;
+  transition:box-shadow 0.2s,transform 0.2s;
+}
+.card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.card-grid{display:grid;gap:20px}
+.card-grid-2{grid-template-columns:repeat(2,1fr)}
+.card-grid-3{grid-template-columns:repeat(3,1fr)}
+.card-grid-4{grid-template-columns:repeat(4,1fr)}
+
+/* ===== Scenario Cards ===== */
+.scenario-card{
+  background:var(--card-bg);
+  border:1px solid var(--border);
+  border-left:4px solid;
+  padding:24px 24px 24px 28px;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow-sm);
+}
+.scenario-card:nth-child(1){border-left-color:#EF4444}
+.scenario-card:nth-child(2){border-left-color:#F59E0B}
+.scenario-card:nth-child(3){border-left-color:#8B5CF6}
+.scenario-card:nth-child(4){border-left-color:#0D9488}
+.scenario-title{
+  font-size:15px;font-weight:700;margin-bottom:10px;
+  display:flex;align-items:center;gap:8px;
+}
+.scenario-card:nth-child(1) .scenario-title{color:#EF4444}
+.scenario-card:nth-child(2) .scenario-title{color:#D97706}
+.scenario-card:nth-child(3) .scenario-title{color:#8B5CF6}
+.scenario-card:nth-child(4) .scenario-title{color:#0D9488}
+.scenario-text{
+  font-size:14px;line-height:1.8;color:var(--text-secondary);
+}
+
+/* ===== Architecture Diagram ===== */
+.arch-layers{
+  display:flex;flex-direction:column;gap:0;
+  border-radius:var(--radius-lg);overflow:hidden;
+  box-shadow:var(--shadow-lg);border:1px solid var(--border);
+}
+.arch-layer{padding:24px;display:flex;flex-direction:column;gap:12px}
+.arch-layer-label{font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;opacity:0.7}
+.arch-layer-user{background:#EDE9FE}
+.arch-layer-user .arch-layer-label{color:#6D28D9}
+.arch-layer-biz{background:#EEF2FF}
+.arch-layer-biz .arch-layer-label{color:#4F46E5}
+.arch-layer-cap{background:#F0FDFA}
+.arch-layer-cap .arch-layer-label{color:#0D9488}
+.arch-layer-tech{background:#FEF3C7}
+.arch-layer-tech .arch-layer-label{color:#B45309}
+.arch-nodes{display:flex;flex-wrap:wrap;gap:8px}
+.arch-node{padding:6px 14px;border-radius:6px;font-size:13px;font-weight:500;white-space:nowrap}
+.arch-node.purple{background:#7C3AED;color:#fff}
+.arch-node.blue{background:#4F46E5;color:#fff}
+.arch-node.teal{background:#0D9488;color:#fff}
+.arch-node.amber{background:#D97706;color:#fff}
+.arch-node.slate{background:#475569;color:#fff}
+.arch-core-highlight{
+  border:3px solid var(--primary);
+  box-shadow:0 0 0 4px rgba(79,70,229,0.15);
+  padding:28px;
+  background:#fff;
+  position:relative;
+}
+.arch-core-highlight .arch-layer-label{color:var(--primary);font-size:13px}
+.arch-core-tag{
+  position:absolute;right:16px;top:-14px;
+  background:var(--primary);color:#fff;
+  padding:4px 14px;border-radius:12px;
+  font-size:11px;font-weight:700;
+}
+.arch-project-cards{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+.arch-project-card{
+  background:var(--primary-bg);border:1px solid rgba(79,70,229,0.2);
+  border-radius:var(--radius);padding:10px 16px;font-size:12px;
+}
+.arch-project-card strong{display:block;font-size:13px;color:var(--primary);margin-bottom:2px}
+.arch-project-card span{color:var(--text-secondary)}
+
+/* ===== Badges ===== */
+.badge{display:inline-block;padding:3px 10px;border-radius:4px;font-size:12px;font-weight:600}
+.badge-green{background:#DCFCE7;color:#166534}
+.badge-blue{background:#DBEAFE;color:#1E40AF}
+.badge-orange{background:#FFEDD5;color:#9A3412}
+.badge-red{background:#FEE2E2;color:#991B1B}
+.badge-purple{background:#F3E8FF;color:#6B21A8}
+.badge-teal{background:#CCFBF1;color:#0F766E}
+.badge-gray{background:#F5F5F4;color:#57534E}
+
+/* ===== Pipeline / Flow ===== */
+.pipeline{display:flex;align-items:flex-start;gap:0;justify-content:center;flex-wrap:nowrap;margin:32px 0}
+.pipeline-step{display:flex;flex-direction:column;align-items:center;gap:8px;flex:1;min-width:0}
+.pipeline-icon{
+  width:56px;height:56px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;color:#fff;flex-shrink:0;
+}
+.pipeline-icon.step1{background:var(--primary)}
+.pipeline-icon.step2{background:var(--primary-light)}
+.pipeline-icon.step3{background:var(--accent)}
+.pipeline-icon.step4{background:var(--accent-light)}
+.pipeline-label{font-size:14px;font-weight:700;text-align:center;color:var(--text)}
+.pipeline-desc{font-size:12px;color:var(--text-secondary);text-align:center;max-width:160px;line-height:1.5}
+.pipeline-arrow{
+  width:40px;height:3px;flex-shrink:0;position:relative;margin:0 -4px;margin-top:26px;
+  background:linear-gradient(90deg,var(--primary),var(--accent));
+}
+.pipeline-arrow::after{content:'';position:absolute;right:-4px;top:-3px;border:5px solid transparent;border-left-color:var(--accent)}
+
+/* ===== Format Tags ===== */
+.format-tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:32px}
+.format-tag{
+  display:flex;align-items:center;gap:6px;
+  background:var(--card-bg);border:1px solid var(--border);
+  padding:8px 16px;border-radius:var(--radius);font-size:13px;font-weight:500;color:var(--text-secondary);
+  box-shadow:var(--shadow-sm);
+}
+
+/* ===== Mockup Frame ===== */
+.mockup-frame{border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--shadow-lg);background:#fff}
+.mockup-title-bar{background:#f8fafc;padding:8px 16px;font-size:11px;color:var(--text-secondary);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:6px}
+.mockup-body{background:white;padding:12px;font-size:10px}
+.mockup-body *{font-size:inherit}
+.mockup-dot{width:6px;height:6px;border-radius:50%;display:inline-block}
+.mockup-dot.red{background:#ef4444}
+.mockup-dot.yellow{background:#f59e0b}
+.mockup-dot.green{background:#10b981}
+.mockup-sidebar{background:#1C1917;color:#e7e5e4;padding:8px;min-width:140px}
+.mockup-sidebar-item{padding:5px 8px;border-radius:4px;font-size:10px;display:flex;align-items:center;gap:6px;cursor:default}
+.mockup-sidebar-item:hover,.mockup-sidebar-item.active{background:rgba(255,255,255,0.1)}
+.mockup-sidebar-folder{font-weight:600;font-size:10px;padding:4px 8px;margin-top:6px;display:flex;align-items:center;gap:4px;color:#d6d3d1}
+.mockup-sidebar-file{padding:3px 8px 3px 22px;font-size:9px;color:#a8a29e;display:flex;align-items:center;gap:4px}
+.mockup-tab{display:inline-block;padding:4px 10px;font-size:9px;border-radius:4px;cursor:default}
+.mockup-tab.active{background:var(--primary);color:white}
+.mockup-tab:not(.active){background:#f1f5f9;color:var(--text-secondary)}
+.mockup-stat{text-align:center;padding:8px;background:#fafafa;border-radius:6px}
+.mockup-stat-num{font-size:18px;font-weight:700;color:var(--primary)}
+.mockup-stat-label{font-size:9px;color:var(--text-muted)}
+.mockup-badge{display:inline-block;padding:1px 6px;border-radius:3px;font-size:8px;font-weight:500}
+.mockup-badge.green{background:#dcfce7;color:#166534}
+.mockup-badge.blue{background:#dbeafe;color:#1e40af}
+.mockup-badge.orange{background:#ffedd5;color:#9a3412}
+.mockup-badge.red{background:#fee2e2;color:#991b1b}
+.mockup-badge.purple{background:#f3e8ff;color:#6b21a8}
+.mockup-badge.teal{background:#ccfbf1;color:#0f766e}
+.mockup-search{border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:10px;color:#999;display:flex;align-items:center;gap:6px;background:#fff}
+.mockup-input{border:1px solid var(--border);border-radius:4px;padding:4px 8px;font-size:9px;background:#fafafa;width:100%}
+.mockup-btn{padding:4px 10px;border-radius:4px;font-size:9px;cursor:default;display:inline-block}
+.mockup-btn.primary{background:var(--primary);color:white}
+.mockup-btn.outline{border:1px solid var(--border);color:var(--text-secondary);background:white}
+.mockup-progress{height:4px;border-radius:2px;background:#e5e7eb;overflow:hidden}
+.mockup-progress-bar{height:100%;border-radius:2px}
+.mockup-chat-bubble{padding:6px 10px;border-radius:8px;font-size:9px;max-width:85%;margin:4px 0;line-height:1.6}
+.mockup-chat-bubble.user{background:#e0e7ff;color:#3730a3;margin-left:auto;text-align:right}
+.mockup-chat-bubble.ai{background:#f1f5f9;color:var(--text)}
+.mockup-chat-cite{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
+.mockup-chat-cite span{background:#e0e7ff;color:#3730a3;padding:1px 6px;border-radius:3px;font-size:7px;font-weight:600}
+
+/* ===== Role Scenario Cards ===== */
+.role-card{
+  background:var(--card-bg);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:24px;
+  transition:box-shadow 0.2s,transform 0.2s;
+}
+.role-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.role-card-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.role-card-icon{
+  width:36px;height:36px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;color:#fff;flex-shrink:0;
+}
+.role-card-title{font-size:15px;font-weight:700}
+.role-card-quote{font-size:13px;color:var(--text-secondary);line-height:1.8;font-style:italic;margin-bottom:8px}
+.role-card-example{font-size:12px;color:var(--text);line-height:1.8;background:var(--primary-bg);padding:12px;border-radius:var(--radius);border-left:3px solid var(--primary)}
+
+/* ===== Automation Card ===== */
+.auto-card{
+  background:var(--card-bg);border:1px solid var(--border);
+  border-radius:var(--radius-lg);padding:24px;
+  display:flex;flex-direction:column;gap:10px;
+}
+.auto-card-icon{
+  width:44px;height:44px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;
+}
+.auto-card-title{font-size:15px;font-weight:700}
+.auto-card-desc{font-size:13px;color:var(--text-secondary);line-height:1.7}
+
+/* ===== Feature Grid ===== */
+.feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.feature-item{display:flex;gap:16px;padding:20px;border-radius:var(--radius);background:var(--card-bg);border:1px solid var(--border)}
+.feature-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px}
+.feature-icon.indigo{background:var(--primary-bg);color:var(--primary)}
+.feature-icon.teal{background:var(--accent-bg);color:var(--accent)}
+.feature-icon.amber{background:#FEF3C7;color:#D97706}
+.feature-icon.purple{background:#F3E8FF;color:#7C3AED}
+.feature-title{font-size:15px;font-weight:600;margin-bottom:4px}
+.feature-desc{font-size:13px;color:var(--text-secondary);line-height:1.6}
+
+/* ===== Key Point Box ===== */
+.key-point{
+  margin-top:32px;padding:20px 24px;
+  background:linear-gradient(135deg,var(--primary-bg),var(--accent-bg));
+  border:1px solid var(--border);border-radius:var(--radius-lg);
+  border-left:4px solid var(--primary);
+  font-size:15px;line-height:1.8;color:var(--text);
+}
+
+/* ===== Platform Feature Section ===== */
+.platform-feature{
+  margin-bottom:36px;
+}
+.platform-feature-title{font-size:18px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.platform-feature-desc{font-size:14px;color:var(--text-secondary);line-height:1.8;margin-bottom:16px;max-width:680px}
+
+/* ===== Status / Roadmap Tables ===== */
+.status-table{width:100%;border-collapse:collapse;font-size:14px;margin-top:24px}
+.status-table th{text-align:left;padding:10px 14px;background:var(--warm-slate);color:#fff;font-weight:600;font-size:13px}
+.status-table th:first-child{border-radius:8px 0 0 0}
+.status-table th:last-child{border-radius:0 8px 0 0}
+.status-table td{padding:10px 14px;border-bottom:1px solid var(--border)}
+.status-table tr:hover td{background:var(--primary-bg)}
+.roadmap-table{width:100%;border-collapse:collapse;font-size:14px}
+.roadmap-table th{text-align:left;padding:12px 16px;background:var(--warm-slate);color:#fff;font-weight:600;font-size:13px}
+.roadmap-table th:first-child{border-radius:8px 0 0 0}
+.roadmap-table th:last-child{border-radius:0 8px 0 0}
+.roadmap-table td{padding:12px 16px;border-bottom:1px solid var(--border)}
+.roadmap-table tr:hover td{background:rgba(79,70,229,0.04)}
+.cmp-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:16px}
+.cmp-table th{text-align:left;padding:8px 12px;background:#f8fafc;font-weight:600;border-bottom:2px solid var(--border)}
+.cmp-table td{padding:8px 12px;border-bottom:1px solid var(--border-light)}
+
+/* ===== Summary Box ===== */
+.summary-box{background:linear-gradient(135deg,var(--primary-bg),var(--accent-bg));border:1px solid var(--border);border-radius:var(--radius-xl);padding:40px;text-align:center}
+.summary-title{font-size:20px;font-weight:700;margin-bottom:12px}
+.summary-desc{font-size:16px;color:var(--text-secondary);max-width:600px;margin:0 auto 32px}
+
+/* ===== Tech Flow ===== */
+.tech-flow{display:flex;align-items:center;justify-content:center;gap:0;margin:32px 0;flex-wrap:wrap}
+.tech-flow-node{display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 24px;background:var(--card-bg);border:2px solid var(--primary);border-radius:var(--radius-lg);text-align:center;min-width:120px}
+.tech-flow-node-label{font-size:14px;font-weight:700;color:var(--primary)}
+.tech-flow-node-desc{font-size:11px;color:var(--text-secondary)}
+.tech-flow-arrow{font-size:24px;color:var(--primary);margin:0 8px;margin-bottom:16px}
+
+/* ===== DB Badge ===== */
+.db-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;justify-content:center}
+.db-badge{padding:6px 14px;border-radius:6px;font-size:13px;font-weight:500;background:var(--card-bg);border:1px solid var(--border)}
+
+/* ===== App Card ===== */
+.app-card{border:1px solid var(--border);border-radius:8px;padding:12px;background:#fff;transition:box-shadow 0.15s}
+.app-card:hover{box-shadow:var(--shadow)}
+.app-card-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;color:#fff;flex-shrink:0}
+.app-card-name{font-size:12px;font-weight:600;margin-left:8px}
+
+/* ===== Gantt ===== */
+.gantt-row{display:flex;align-items:center;gap:8px;margin:6px 0}
+.gantt-label{font-size:9px;width:60px;flex-shrink:0;text-align:right;color:var(--text-secondary)}
+.gantt-track{flex:1;height:16px;background:#f1f5f9;border-radius:4px;position:relative;overflow:hidden}
+.gantt-bar{height:100%;border-radius:4px;position:absolute;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;font-weight:600}
+
+/* ===== Admin Compact Cards ===== */
+.admin-point{display:flex;gap:16px;align-items:flex-start;padding:16px 20px;border-radius:var(--radius);background:var(--card-bg);border:1px solid var(--border)}
+.admin-point-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff;flex-shrink:0}
+.admin-point-title{font-size:14px;font-weight:700;margin-bottom:2px}
+.admin-point-desc{font-size:13px;color:var(--text-secondary);line-height:1.6}
+
+/* ===== Integration Badges ===== */
+.integration-row{display:flex;gap:12px;justify-content:center;margin-top:16px}
+.integration-badge{
+  display:flex;align-items:center;gap:8px;
+  padding:10px 20px;border-radius:var(--radius);
+  background:var(--card-bg);border:1px solid var(--border);
+  font-size:14px;font-weight:600;
+}
+
+/* ===== Back to Top ===== */
+.back-top{
+  position:fixed;bottom:32px;right:32px;
+  width:44px;height:44px;border-radius:50%;
+  background:var(--primary);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;box-shadow:var(--shadow-lg);
+  transition:all 0.3s;opacity:0;transform:translateY(20px);
+  z-index:200;border:none;font-size:20px;
+}
+.back-top.visible{opacity:1;transform:translateY(0)}
+.back-top:hover{background:var(--primary-dark);transform:translateY(-2px)}
+
+/* ===== Footer ===== */
+.footer{background:var(--warm-slate);color:#d6d3d1;padding:32px 24px;text-align:center;font-size:14px}
+.footer strong{color:#fff}
+
+/* ===== Fade-up ===== */
+.fade-up{opacity:1;transform:translateY(0);transition:opacity 0.5s ease,transform 0.5s ease;transition-delay:var(--delay,0s)}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* ===== Responsive 1024px ===== */
+@media(max-width:1024px){
+  .card-grid-3{grid-template-columns:repeat(2,1fr)}
+  .card-grid-4{grid-template-columns:repeat(2,1fr)}
+  .feature-grid{grid-template-columns:repeat(2,1fr)}
+  .arch-project-cards{flex-direction:column}
+  .pipeline{flex-wrap:wrap;gap:16px}
+  .pipeline-arrow{display:none}
+}
+
+/* ===== Responsive 768px ===== */
+@media(max-width:768px){
+  .section{padding:56px 16px}
+  .card-grid-2,.card-grid-3,.card-grid-4{grid-template-columns:1fr}
+  .feature-grid{grid-template-columns:1fr}
+  .pipeline{flex-direction:column}
+  .pipeline-arrow{width:3px;height:24px;margin:0 0 0 28px;background:linear-gradient(180deg,var(--primary),var(--accent))}
+  .pipeline-arrow::after{right:auto;top:auto;bottom:-4px;left:-3px;border:5px solid transparent;border-top-color:var(--accent)}
+  .tech-flow{flex-direction:column}
+  .tech-flow-arrow{transform:rotate(90deg);margin:8px 0}
+  .hero{padding:72px 16px 56px}
+  .hero h1{font-size:28px}
+  .summary-box{padding:24px}
+  .mockup-body{padding:8px}
+  .mockup-sidebar{min-width:100px}
+  .role-card-grid{grid-template-columns:1fr!important}
+  .auto-grid{grid-template-columns:1fr!important}
+  .admin-grid{grid-template-columns:1fr!important}
+  .platform-feature .platform-mockup-grid{grid-template-columns:1fr!important}
+  .format-tags{gap:6px}
+}
+
+/* ===== Responsive 480px ===== */
+@media(max-width:480px){
+  .section{padding:40px 12px}
+  .hero{padding:56px 12px 40px}
+  .hero h1{font-size:24px}
+  .hero-subtitle{font-size:15px}
+  .nav a{padding:6px 8px;font-size:12px}
+  .section-title{font-size:22px}
+  .container{padding:0 12px}
+  .format-tags{flex-direction:column;align-items:stretch}
+}
+
+/* ===== Print ===== */
+@media print{
+  .nav,.back-top,.hero-nav{display:none!important}
+  .section{opacity:1!important;transform:none!important;padding:24px 0;page-break-inside:avoid}
+  .hero{background:#4F46E5!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{font-size:12px}
+  .mockup-frame{box-shadow:none;border:1px solid #ccc}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== SVG Icon Sprite ===== -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+<symbol id="icon-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></symbol>
+<symbol id="icon-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></symbol>
+<symbol id="icon-folder" viewBox="0 0 24 24"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></symbol>
+<symbol id="icon-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></symbol>
+<symbol id="icon-message" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+<symbol id="icon-zap" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+<symbol id="icon-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+<symbol id="icon-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+<symbol id="icon-chart" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></symbol>
+<symbol id="icon-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></symbol>
+<symbol id="icon-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></symbol>
+<symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+<symbol id="icon-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
+<symbol id="icon-x" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+<symbol id="icon-arrow-up" viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></symbol>
+<symbol id="icon-layers" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></symbol>
+<symbol id="icon-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></symbol>
+<symbol id="icon-cpu" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></symbol>
+<symbol id="icon-key" viewBox="0 0 24 24"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></symbol>
+<symbol id="icon-warning" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></symbol>
+<symbol id="icon-sparkle" viewBox="0 0 24 24"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8L12 2z"/></symbol>
+</svg>
+
+<!-- ===== HERO ===== -->
+<header class="hero" id="hero">
+<div class="container">
+  <div class="hero-badge">Enterprise AI Platform v1.0</div>
+  <h1>企业AI共性能力平台</h1>
+  <p class="hero-subtitle">从每个人的文档，到项目全知的AI，再到公司级能力底座——让每一个项目的知识不再散落、不再丢失、不再依赖某个人。</p>
+  <nav class="hero-nav">
+    <a href="#s1">问题是什么</a>
+    <a href="#s2">整体架构</a>
+    <a href="#s3">文档智能处理</a>
+    <a href="#s4">项目共享空间</a>
+    <a href="#s5">共性能力平台</a>
+    <a href="#s6">管理后台</a>
+    <a href="#s7">技术架构</a>
+  </nav>
+</div>
+</header>
+
+<!-- ===== STICKY NAV ===== -->
+<nav class="nav" id="mainNav">
+<div class="container">
+  <span class="nav-brand">AI平台</span>
+  <a href="#s1">问题是什么</a>
+  <a href="#s2">整体架构</a>
+  <a href="#s3">文档智能处理</a>
+  <a href="#s4">项目共享空间</a>
+  <a href="#s5">共性能力平台</a>
+  <a href="#s6">管理后台</a>
+  <a href="#s7">技术架构</a>
+</div>
+</nav>
+
+<!-- ===== Section 01: 这些场景你一定见过 ===== -->
+<section class="section" id="s1">
+<div class="container">
+  <span class="section-label fade-up">Section 01</span>
+  <h2 class="section-title fade-up" style="--delay:0.1s">这些场景你一定见过</h2>
+  <p class="section-desc fade-up" style="--delay:0.15s">不需要讲技术术语，光是这些日常场景，就已经说明了一切。</p>
+
+  <div class="card-grid card-grid-2 fade-up" style="--delay:0.2s">
+    <div class="scenario-card">
+      <div class="scenario-title">新人入职</div>
+      <div class="scenario-text">
+        新同事加入项目组，导师口头交接了半小时，甩过来几个网盘链接就完事了。新人自己翻了几百个文件，还是搞不清项目整体架构、做了哪些决策、为什么这么选。
+      </div>
+    </div>
+    <div class="scenario-card">
+      <div class="scenario-title">跨角色沟通</div>
+      <div class="scenario-text">
+        产品经理想了解某个模块的技术实现，翻了半天找不到技术文档，好不容易找到了，里面全是只有开发者才懂的术语。去问开发，开发说"文档不是最新的，我改了但是没更新"。
+      </div>
+    </div>
+    <div class="scenario-card">
+      <div class="scenario-title">项目验收</div>
+      <div class="scenario-text">
+        项目要验收了，才发现需求文档缺了好几个版本，测试报告不是最新的，验收标准和PRD对不上。临时补文档、补材料，忙得鸡飞狗跳。
+      </div>
+    </div>
+    <div class="scenario-card">
+      <div class="scenario-title">AI应用重复建设</div>
+      <div class="scenario-text">
+        公司做了十几个AI应用，但各部门互不知道。A部门花3个月做的合同审查工具，B部门半年前就有了。没人知道公司到底有什么AI能力。
+      </div>
+    </div>
+  </div>
+
+  <div class="key-point fade-up" style="--delay:0.3s">
+    如果有一个平台，让每个项目的人都把文档传上去，AI自动理解所有内容，新人来了直接问AI，验收材料AI帮你检查是否齐全——这就是<strong>企业AI共性能力平台</strong>要做的。
+  </div>
+</div>
+</section>
+
+<!-- ===== Section 02: 整体架构 ===== -->
+<section class="section" id="s2">
+<div class="container">
+  <span class="section-label fade-up">Section 02</span>
+  <h2 class="section-title fade-up" style="--delay:0.1s">整体架构：三层，自底向上</h2>
+  <p class="section-desc fade-up" style="--delay:0.15s">文档处理是基础，项目空间是核心，平台能力是放大器。三层各司其职，自底向上构建企业AI能力。</p>
+
+
+  <!-- ===== 可视化三层架构图 ===== -->
+  <div class="fade-up" style="--delay:0.2s;margin:32px 0 0">
+
+    <!-- === 上层 === -->
+    <div style="background:linear-gradient(135deg,#6366F1,#4F46E5);border-radius:16px 16px 4px 4px;padding:24px 28px;color:white;position:relative">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="width:36px;height:36px;background:rgba(255,255,255,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px">🏢</div>
+          <div>
+            <div style="font-size:17px;font-weight:700">上层 · 共性能力平台</div>
+            <div style="font-size:12px;opacity:0.8">组织级放大器 — 面向全公司</div>
+          </div>
+        </div>
+        <div style="font-size:11px;background:rgba(255,255,255,0.15);padding:4px 12px;border-radius:20px">所有项目汇聚 + 平台级AI</div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px">
+        <div style="background:rgba(255,255,255,0.12);border-radius:10px;padding:14px;text-align:center">
+          <div style="font-size:24px;margin-bottom:6px">🔍</div>
+          <div style="font-weight:600;font-size:12px;margin-bottom:2px">跨项目检索</div>
+          <div style="font-size:10px;opacity:0.75">搜一个知识点<br>全公司项目都找到</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.12);border-radius:10px;padding:14px;text-align:center">
+          <div style="font-size:24px;margin-bottom:6px">🏪</div>
+          <div style="font-weight:600;font-size:12px;margin-bottom:2px">应用集市</div>
+          <div style="font-size:10px;opacity:0.75">AI工具一页看全<br>一键试用</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.12);border-radius:10px;padding:14px;text-align:center">
+          <div style="font-size:24px;margin-bottom:6px">⚡</div>
+          <div style="font-weight:600;font-size:12px;margin-bottom:2px">技能市场</div>
+          <div style="font-size:10px;opacity:0.75">AI模板跨项目<br>复用不重复造</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.12);border-radius:10px;padding:14px;text-align:center">
+          <div style="font-size:24px;margin-bottom:6px">💬</div>
+          <div style="font-weight:600;font-size:12px;margin-bottom:2px">办公助手</div>
+          <div style="font-size:10px;opacity:0.75">对话+文档生成<br>结合知识库</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 上→中 连接箭头 -->
+    <div style="display:flex;justify-content:center;gap:80px;padding:6px 0">
+      <div style="display:flex;flex-direction:column;align-items:center">
+        <div style="width:2px;height:16px;background:linear-gradient(to bottom,#6366F1,#0D9488)"></div>
+        <div style="font-size:9px;color:var(--text-muted);margin:2px 0">汇聚</div>
+        <div style="width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid #0D9488"></div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center">
+        <div style="width:2px;height:16px;background:linear-gradient(to bottom,#6366F1,#0D9488)"></div>
+        <div style="font-size:9px;color:var(--text-muted);margin:2px 0">共享</div>
+        <div style="width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid #0D9488"></div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center">
+        <div style="width:2px;height:16px;background:linear-gradient(to bottom,#6366F1,#0D9488)"></div>
+        <div style="font-size:9px;color:var(--text-muted);margin:2px 0">复用</div>
+        <div style="width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid #0D9488"></div>
+      </div>
+    </div>
+
+    <!-- === 中层（核心，最大最醒目）=== -->
+    <div style="border:3px solid var(--accent);border-radius:16px;padding:28px;background:linear-gradient(135deg,#F0FDFA,#ECFDF5);position:relative">
+      <!-- 核心标签 -->
+      <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--accent);color:white;padding:4px 20px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:1px;box-shadow:0 2px 8px rgba(13,148,136,0.3)">
+        ★ 核心 ★
+      </div>
+
+      <div style="display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:20px;margin-top:4px">
+        <div style="width:44px;height:44px;background:linear-gradient(135deg,var(--accent),#0D9488);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 2px 8px rgba(13,148,136,0.3)">📂</div>
+        <div>
+          <div style="font-size:20px;font-weight:800;color:var(--warm-slate)">中层 · 项目共享空间</div>
+          <div style="font-size:13px;color:var(--accent)">核心产品 — 面向每个项目团队</div>
+        </div>
+      </div>
+
+      <!-- 一个公式 -->
+      <div style="text-align:center;margin-bottom:20px">
+        <div style="display:inline-flex;align-items:center;gap:8px;background:white;padding:10px 24px;border-radius:10px;border:2px dashed var(--accent);font-size:15px;font-weight:600;color:var(--text)">
+          <span>每个项目 =</span>
+          <span style="background:var(--primary-bg);color:var(--primary);padding:4px 10px;border-radius:6px;font-size:13px">📁 全员文件池</span>
+          <span>+</span>
+          <span style="background:var(--accent-bg);color:var(--accent);padding:4px 10px;border-radius:6px;font-size:13px">🌱 项目AI</span>
+          <span>+</span>
+          <span style="background:#FEF3C7;color:#92400E;padding:4px 10px;border-radius:6px;font-size:13px">⏰ 自动化</span>
+        </div>
+      </div>
+
+      <!-- 项目空间示例 -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px">
+        <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:14px;border-top:3px solid #0D9488">
+          <div style="font-size:20px;margin-bottom:6px">🏙</div>
+          <div style="font-weight:700;font-size:12px;color:var(--text);margin-bottom:4px">智慧城市建设项目</div>
+          <div style="display:flex;gap:8px;font-size:10px;color:var(--text-muted);margin-bottom:6px">
+            <span>👤 5</span><span>📄 23</span><span>🧩 156</span>
+          </div>
+          <div style="font-size:9px;color:var(--text-muted);line-height:1.4">需求文档 · 技术方案<br>验收标准 · 会议纪要</div>
+        </div>
+        <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:14px;border-top:3px solid #3B82F6">
+          <div style="font-size:20px;margin-bottom:6px">📦</div>
+          <div style="font-weight:700;font-size:12px;color:var(--text);margin-bottom:4px">供应链优化项目</div>
+          <div style="display:flex;gap:8px;font-size:10px;color:var(--text-muted);margin-bottom:6px">
+            <span>👤 3</span><span>📄 15</span><span>🧩 89</span>
+          </div>
+          <div style="font-size:9px;color:var(--text-muted);line-height:1.4">报价单 · 合同<br>技术评审记录</div>
+        </div>
+        <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:14px;border-top:3px solid #8B5CF6">
+          <div style="font-size:20px;margin-bottom:6px">🗄</div>
+          <div style="font-weight:700;font-size:12px;color:var(--text);margin-bottom:4px">数据中台建设</div>
+          <div style="display:flex;gap:8px;font-size:10px;color:var(--text-muted);margin-bottom:6px">
+            <span>👤 4</span><span>📄 31</span><span>🧩 203</span>
+          </div>
+          <div style="font-size:9px;color:var(--text-muted);line-height:1.4">架构设计 · 接口文档<br>数据标准 · 运维手册</div>
+        </div>
+        <div style="background:white;border:1px solid var(--border);border-radius:10px;padding:14px;border-top:3px solid #F59E0B">
+          <div style="font-size:20px;margin-bottom:6px">🏭</div>
+          <div style="font-weight:700;font-size:12px;color:var(--text);margin-bottom:4px">制造业数字化转型</div>
+          <div style="display:flex;gap:8px;font-size:10px;color:var(--text-muted);margin-bottom:6px">
+            <span>👤 6</span><span>📄 42</span><span>🧩 312</span>
+          </div>
+          <div style="font-size:9px;color:var(--text-muted);line-height:1.4">产线方案 · 质检报告<br>设备数据 · ROI分析</div>
+        </div>
+      </div>
+
+      <div style="text-align:center;font-size:12px;color:var(--text-muted)">
+        每个在建项目、每个部门都可以有自己的项目空间 · 人员变动知识不丢失 · AI看过所有文档任何人都能提问
+      </div>
+    </div>
+
+    <!-- 中→下 连接箭头 -->
+    <div style="display:flex;justify-content:center;padding:6px 0">
+      <div style="display:flex;flex-direction:column;align-items:center">
+        <div style="width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:6px solid #14B8A6"></div>
+        <div style="font-size:9px;color:var(--text-muted);margin:2px 0">自动处理</div>
+        <div style="width:2px;height:16px;background:linear-gradient(to bottom,#14B8A6,#0D9488)"></div>
+      </div>
+    </div>
+
+    <!-- === 底层 === -->
+    <div style="background:linear-gradient(135deg,#0D9488,#0F766E);border-radius:4px 4px 16px 16px;padding:24px 28px;color:white">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="width:36px;height:36px;background:rgba(255,255,255,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px">⚙️</div>
+          <div>
+            <div style="font-size:17px;font-weight:700">底层 · 文档智能处理引擎</div>
+            <div style="font-size:12px;opacity:0.8">基础设施 — 对使用者完全透明</div>
+          </div>
+        </div>
+        <div style="font-size:11px;background:rgba(255,255,255,0.15);padding:4px 12px;border-radius:20px">上传即处理，全自动</div>
+      </div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center">
+        <span style="padding:5px 12px;background:rgba(255,255,255,0.15);border-radius:6px;font-size:12px;font-weight:500">PDF</span>
+        <span style="padding:5px 12px;background:rgba(255,255,255,0.15);border-radius:6px;font-size:12px;font-weight:500">Word</span>
+        <span style="padding:5px 12px;background:rgba(255,255,255,0.15);border-radius:6px;font-size:12px;font-weight:500">Excel</span>
+        <span style="padding:5px 12px;background:rgba(255,255,255,0.15);border-radius:6px;font-size:12px;font-weight:500">PPT</span>
+        <span style="padding:5px 12px;background:rgba(255,255,255,0.15);border-radius:6px;font-size:12px;font-weight:500">Markdown</span>
+        <span style="padding:5px 12px;background:rgba(255,255,255,0.15);border-radius:6px;font-size:12px;font-weight:500">🎙 会议录音</span>
+        <span style="padding:5px 12px;background:rgba(255,255,255,0.15);border-radius:6px;font-size:12px;font-weight:500">🖼 图片/OCR</span>
+        <span style="padding:5px 12px;background:rgba(255,255,255,0.15);border-radius:6px;font-size:12px;font-weight:500">📄 扫描件</span>
+        <span style="padding:2px 4px;color:rgba(255,255,255,0.5)">→</span>
+        <span style="padding:5px 12px;background:rgba(255,255,255,0.25);border-radius:6px;font-size:12px;font-weight:600">智能切片</span>
+        <span style="padding:5px 12px;background:rgba(255,255,255,0.25);border-radius:6px;font-size:12px;font-weight:600">质量打分</span>
+        <span style="padding:5px 12px;background:rgba(255,255,255,0.25);border-radius:6px;font-size:12px;font-weight:600">摘要生成</span>
+        <span style="padding:5px 12px;background:rgba(255,255,255,0.25);border-radius:6px;font-size:12px;font-weight:600">向量化索引</span>
+      </div>
+    </div>
+
+    <!-- 数据流示意 -->
+    <div style="margin-top:24px;background:linear-gradient(135deg,var(--primary-bg),var(--accent-bg));border-radius:12px;padding:20px 24px;border:1px solid var(--border)">
+      <div style="text-align:center;font-size:12px;font-weight:600;color:var(--text);margin-bottom:12px">一个文档的生命周期：从上传到被全公司发现</div>
+      <div style="display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap">
+        <div style="padding:6px 14px;background:#0D9488;color:white;border-radius:20px;font-size:11px;font-weight:600">📄 文档上传</div>
+        <div style="color:var(--text-muted);font-size:14px">→</div>
+        <div style="padding:6px 14px;background:#14B8A6;color:white;border-radius:20px;font-size:11px;font-weight:600">⚙️ 底层自动处理</div>
+        <div style="color:var(--text-muted);font-size:14px">→</div>
+        <div style="padding:6px 14px;background:var(--accent);color:white;border-radius:20px;font-size:11px;font-weight:600">📂 进入项目空间</div>
+        <div style="color:var(--text-muted);font-size:14px">→</div>
+        <div style="padding:6px 14px;background:var(--primary);color:white;border-radius:20px;font-size:11px;font-weight:600">🌱 项目AI理解和引用</div>
+        <div style="color:var(--text-muted);font-size:14px">→</div>
+        <div style="padding:6px 14px;background:#6366F1;color:white;border-radius:20px;font-size:11px;font-weight:600">🏢 跨项目检索可发现</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- ===== Section 03: 第一层：文档上传后，AI做了什么 ===== -->
+<section class="section" id="s3">
+<div class="container">
+  <span class="section-label fade-up">Section 03</span>
+  <h2 class="section-title fade-up" style="--delay:0.1s">第一层：上传一份文档，后面发生的事</h2>
+  <p class="section-desc fade-up" style="--delay:0.15s">你只需要上传文件，剩下的AI全自动完成。不需要做任何额外操作，文件进去就是可搜索、可引用的知识。</p>
+
+  <!-- Format Tags -->
+  <div class="format-tags fade-up" style="--delay:0.2s">
+    <div class="format-tag">PDF</div>
+    <div class="format-tag">Word</div>
+    <div class="format-tag">Excel</div>
+    <div class="format-tag">PPT</div>
+    <div class="format-tag">Markdown</div>
+    <div class="format-tag">会议录音</div>
+    <div class="format-tag">图片</div>
+    <div class="format-tag">扫描件</div>
+  </div>
+
+  <!-- 4-step Pipeline -->
+  <div class="pipeline fade-up" style="--delay:0.25s">
+    <div class="pipeline-step">
+      <div class="pipeline-icon step1">1</div>
+      <div class="pipeline-label">文档解析</div>
+      <div class="pipeline-desc">提取文本、表格、图片中的内容。扫描件自动OCR，会议录音自动转文字</div>
+    </div>
+    <div class="pipeline-arrow"></div>
+    <div class="pipeline-step">
+      <div class="pipeline-icon step2">2</div>
+      <div class="pipeline-label">智能切片</div>
+      <div class="pipeline-desc">不是按字数暴力切割，而是按语义段落分段。每个切片是一个完整的知识单元</div>
+    </div>
+    <div class="pipeline-arrow"></div>
+    <div class="pipeline-step">
+      <div class="pipeline-icon step3">3</div>
+      <div class="pipeline-label">质量打分</div>
+      <div class="pipeline-desc">AI评估每个切片的完整性和信息密度，标记低质量片段供人工复核</div>
+    </div>
+    <div class="pipeline-arrow"></div>
+    <div class="pipeline-step">
+      <div class="pipeline-icon step4">4</div>
+      <div class="pipeline-label">索引入库</div>
+      <div class="pipeline-desc">关键词提取、自动摘要、向量化存储，随时可以被检索到</div>
+    </div>
+  </div>
+
+  <div class="key-point fade-up" style="--delay:0.35s">
+    这些步骤全自动完成。上传者不需要做任何额外操作，文件进去就是可搜索、可引用的知识。
+  </div>
+</div>
+</section>
+
+<!-- ===== Section 04: 第二层：项目共享空间 (CORE — LONGEST SECTION) ===== -->
+<section class="section" id="s4">
+<div class="container">
+
+  <!-- 4.1 项目空间包含什么 -->
+  <span class="section-label fade-up">Section 04 — 核心</span>
+  <h2 class="section-title fade-up" style="--delay:0.1s">第二层：项目共享空间</h2>
+  <p class="section-desc fade-up" style="--delay:0.15s">每个在建项目、每个部门都可以有自己的项目空间。这不是一个文件网盘，而是一个AI驱动的项目知识容器。</p>
+
+  <!-- 能力全景 -->
+  <div class="key-point fade-up" style="--delay:0.2s;background:var(--accent-bg);border-left-color:var(--accent);margin-bottom:32px">
+    项目空间 = 全员文件池 + 项目专属AI + 自动化任务 + 进度管理 + 成员协作。所有能力围绕一个目标：让项目的每一份知识都被AI理解、被任何人查到、不再依赖某个人。
+  </div>
+
+  <h3 class="fade-up" style="font-size:20px;font-weight:700;margin-bottom:20px;--delay:0.25s">项目空间包含七大能力</h3>
+
+  <div class="card-grid card-grid-2 role-card-grid fade-up" style="--delay:0.3s;gap:16px;margin-bottom:48px">
+    <!-- 能力1 -->
+    <div class="role-card" style="border-left:4px solid var(--primary)">
+      <div class="role-card-header">
+        <div class="role-card-icon" style="background:var(--primary)">📁</div>
+        <div class="role-card-title">多人文件池</div>
+      </div>
+      <div class="role-card-example">
+        <strong>是什么：</strong>产品经理传PRD，开发者传技术方案，测试传测试报告，项目经理传会议纪要、供应商传报价单、客户传需求邮件……每个人上传自己负责的部分，所有格式的文件都能上传——Word、PDF、Excel、PPT、Markdown、会议录音、图片、扫描件。<br><br>
+        <strong>为什么需要：</strong>项目资料散落在每个人的电脑、邮件附件、网盘链接里。新人找不到、离职了就丢了、版本混乱不知道哪个是最新的。集中到一个空间，所有人看到的都是同一份最新资料。
+      </div>
+    </div>
+    <!-- 能力2 -->
+    <div class="role-card" style="border-left:4px solid var(--accent)">
+      <div class="role-card-header">
+        <div class="role-card-icon" style="background:var(--accent)">🧠</div>
+        <div class="role-card-title">AI自动处理所有文档</div>
+      </div>
+      <div class="role-card-example">
+        <strong>是什么：</strong>文件上传后，AI自动完成：解析提取内容 → 按语义智能切片 → 质量打分（标记不完整的片段） → 关键词提取和摘要生成 → 向量化存储。全程自动，上传者不需要做任何额外操作。<br><br>
+        <strong>为什么需要：</strong>文档上传了不等于能用。如果不做结构化处理，搜索只能靠文件名，内容里的知识就是死的。AI处理后，每一份文档变成可检索、可引用、可交叉对比的活知识。
+      </div>
+    </div>
+    <!-- 能力3 -->
+    <div class="role-card" style="border-left:4px solid #8B5CF6">
+      <div class="role-card-header">
+        <div class="role-card-icon" style="background:#8B5CF6">🌱</div>
+        <div class="role-card-title">项目专属AI助手（小树）</div>
+      </div>
+      <div class="role-card-example">
+        <strong>是什么：</strong>每个项目有一个专属AI，它"读过"这个项目里所有上传的文档。任何人都可以跟它对话，问任何关于项目的问题——架构、决策、进度、风险、验收标准——它都能回答，且附上引用来源。<br><br>
+        <strong>为什么需要：</strong>项目交接靠口口相传，新人来了不知道从哪里看起。产品经理想了解技术实现，找不到人也看不懂文档。小树AI就是那个"什么都读过、随时在线、不会离职"的项目百科。
+      </div>
+    </div>
+    <!-- 能力4 -->
+    <div class="role-card" style="border-left:4px solid #F59E0B">
+      <div class="role-card-header">
+        <div class="role-card-icon" style="background:#F59E0B">⏰</div>
+        <div class="role-card-title">自动化定时任务（Cron）</div>
+      </div>
+      <div class="role-card-example">
+        <strong>是什么：</strong>设置定时任务，AI定期自动遍历项目所有文档，执行三件事：<br>
+        ① 资料完整性检查——对比需求清单，告诉你还缺什么文件<br>
+        ② 验收文档自动生成——判断资料齐全后，自动生成验收文档草稿<br>
+        ③ 风险预警——扫描"待定""TBD""未确认"等关键词，主动推送提醒<br><br>
+        <strong>为什么需要：</strong>不用人盯着检查。等到验收时才发现缺材料就晚了，AI每周自动检查一次，提前预警、主动生成。
+      </div>
+    </div>
+    <!-- 能力5 -->
+    <div class="role-card" style="border-left:4px solid #10B981">
+      <div class="role-card-header">
+        <div class="role-card-icon" style="background:#10B981">📊</div>
+        <div class="role-card-title">进度管理与验收追踪</div>
+      </div>
+      <div class="role-card-example">
+        <strong>是什么：</strong>自动统计文档数、切片数、成员数、需求完成率、预算执行率、AI调用次数。验收标准与PRD需求自动对比，差异一目了然。甘特图展示各阶段进度。<br><br>
+        <strong>为什么需要：</strong>项目经理每周花半天整理进度周报，实际上数据都在文档里。让AI自动提取、自动对比，人只需要看结论和做决策。
+      </div>
+    </div>
+    <!-- 能力6 -->
+    <div class="role-card" style="border-left:4px solid #EF4444">
+      <div class="role-card-header">
+        <div class="role-card-icon" style="background:#EF4444">✅</div>
+        <div class="role-card-title">待办与任务管理</div>
+      </div>
+      <div class="role-card-example">
+        <strong>是什么：</strong>项目内的任务看板，支持优先级（P1/P2/P3）、智能分组（今日待办、即将到期、已完成）、文件夹归类、内联创建和编辑。<br><br>
+        <strong>为什么需要：</strong>项目的待办事项散落在Jira、飞书、邮件、聊天记录里。在项目空间内统一管理，和文档、AI助手打通，任务和知识不再割裂。
+      </div>
+    </div>
+    <!-- 能力7 -->
+    <div class="role-card" style="border-left:4px solid #6366F1">
+      <div class="role-card-header">
+        <div class="role-card-icon" style="background:#6366F1">👥</div>
+        <div class="role-card-title">成员协作与权限</div>
+      </div>
+      <div class="role-card-example">
+        <strong>是什么：</strong>邀请团队成员加入项目，设置角色（负责人/编辑者/查看者）。每个成员上传的文档、编辑的操作、AI的对话，全部留痕。活动流记录谁做了什么。<br><br>
+        <strong>为什么需要：</strong>知道谁上传了什么、谁改了什么、谁看了什么——不只是协作，更是项目资产的归属和追溯。人员变动时，知识不跟着人走，而是留在项目空间里。
+      </div>
+    </div>
+  </div>
+
+  <!-- 4.2 这些能力怎么被用起来——多角色场景 -->
+  <h3 class="fade-up" style="font-size:22px;font-weight:700;margin-bottom:8px;--delay:0.1s">这些能力怎么被用起来</h3>
+  <p class="fade-up" style="font-size:15px;color:var(--text-secondary);margin-bottom:24px;--delay:0.15s">不同角色带着不同的问题进入项目空间，AI的回答始终基于项目中的真实文档，不会编造。</p>
+
+  <div class="card-grid card-grid-2 role-card-grid fade-up" style="--delay:0.2s;gap:20px;margin-bottom:56px">
+    <div class="role-card">
+      <div class="role-card-header">
+        <div class="role-card-icon" style="background:#EF4444">👤</div>
+        <div class="role-card-title">新人入职 / 项目交接</div>
+      </div>
+      <div class="role-card-quote">新人加入项目空间，直接问AI</div>
+      <div class="role-card-example">
+        "这个项目的整体架构是什么？"<br>
+        "之前做过哪些技术决策？为什么选了方案A不是B？"<br>
+        "第三期的需求变更是怎么讨论的？"<br><br>
+        AI从所有文档中找到答案，附上引用来源。不需要导师花几小时口头交接。
+      </div>
+    </div>
+    <div class="role-card">
+      <div class="role-card-header">
+        <div class="role-card-icon" style="background:#3B82F6">📊</div>
+        <div class="role-card-title">产品经理理解技术</div>
+      </div>
+      <div class="role-card-quote">产品经理问AI</div>
+      <div class="role-card-example">
+        "用户权限模块的接口设计是怎样的？"<br>
+        "上次技术评审的结论是什么？"<br><br>
+        AI从技术文档和评审记录中提取回答，用产品经理能理解的语言解释。
+      </div>
+    </div>
+    <div class="role-card">
+      <div class="role-card-header">
+        <div class="role-card-icon" style="background:#F59E0B">📋</div>
+        <div class="role-card-title">项目经理检查进度</div>
+      </div>
+      <div class="role-card-quote">项目经理问AI</div>
+      <div class="role-card-example">
+        "第三阶段的交付物清单完成情况怎样？"<br>
+        "还有哪些验收标准没有对应的技术实现？"<br><br>
+        AI对比需求文档和技术文档，给出精确的差异分析。
+      </div>
+    </div>
+    <div class="role-card">
+      <div class="role-card-header">
+        <div class="role-card-icon" style="background:#8B5CF6">🤝</div>
+        <div class="role-card-title">跨角色协作</div>
+      </div>
+      <div class="role-card-quote">每个人都能问AI</div>
+      <div class="role-card-example">
+        测试人员想了解产品需求原文，开发者想看会议纪要里的决策过程，领导想看预算执行情况——每个人都能问AI，AI的回答基于项目中的真实文档，不会编造。
+      </div>
+    </div>
+  </div>
+
+  <!-- 4.3 项目专属AI助手 - 小树 -->
+  <h3 class="fade-up" style="font-size:22px;font-weight:700;margin-bottom:8px;--delay:0.1s">小树AI：只懂你的项目，但懂得很深</h3>
+  <p class="fade-up" style="font-size:15px;color:var(--text-secondary);margin-bottom:24px;--delay:0.15s">小树只看这一个项目的文档，不会把其他项目的内容混进来。回答精准，每个结论都有来源。</p>
+
+  <div class="mockup-frame fade-up" style="--delay:0.2s;margin-bottom:24px">
+    <div class="mockup-title-bar">
+      <span class="mockup-dot red"></span>
+      <span class="mockup-dot yellow"></span>
+      <span class="mockup-dot green"></span>
+      <span style="margin-left:8px">小树AI — 智慧城市建设项目</span>
+    </div>
+    <div style="display:flex;min-height:340px">
+      <!-- Left: Conversation List -->
+      <div style="width:180px;border-right:1px solid var(--border);background:#fafafa;padding:8px;flex-shrink:0">
+        <div style="font-size:9px;color:var(--text-muted);margin-bottom:8px;padding:0 4px">最近对话</div>
+        <div style="padding:6px 8px;border-radius:4px;background:#e0e7ff;font-size:9px;color:#3730a3;margin-bottom:4px;cursor:default">验收标准对应关系查询</div>
+        <div style="padding:6px 8px;border-radius:4px;font-size:9px;color:var(--text-secondary);margin-bottom:4px;cursor:default">技术方案中性能设计部分</div>
+        <div style="padding:6px 8px;border-radius:4px;font-size:9px;color:var(--text-secondary);margin-bottom:4px;cursor:default">第三期需求变更讨论</div>
+        <div style="padding:6px 8px;border-radius:4px;font-size:9px;color:var(--text-secondary);margin-bottom:4px;cursor:default">前后端分工和进度</div>
+        <div style="padding:6px 8px;border-radius:4px;font-size:9px;color:var(--text-secondary);cursor:default">会议纪要中待办事项汇总</div>
+      </div>
+      <!-- Right: Chat Area -->
+      <div style="flex:1;display:flex;flex-direction:column">
+        <div style="padding:8px 12px;border-bottom:1px solid var(--border);font-size:10px;font-weight:600;color:var(--text-secondary)">
+          🌱 小树AI — 对话
+        </div>
+        <div style="flex:1;padding:12px;display:flex;flex-direction:column;gap:8px;overflow:hidden">
+          <div class="mockup-chat-bubble user">
+            验收标准第3条"性能测试报告"对应的技术实现在哪个文档里？
+          </div>
+          <div class="mockup-chat-bubble ai">
+            <div>根据项目文档分析，验收标准第3条"性能测试报告"对应的技术实现在《技术方案_v2.3.md》的第4章"性能设计"部分，由后端团队张伟负责。</div>
+            <div style="margin-top:6px">当前状态：技术方案已完成，但性能测试报告尚未上传。建议提醒测试团队补充。</div>
+            <div class="mockup-chat-cite">
+              <span>技术方案_v2.3.md §4</span>
+              <span>验收标准清单.xlsx §3</span>
+            </div>
+          </div>
+        </div>
+        <div style="padding:8px 12px;border-top:1px solid var(--border);display:flex;gap:8px;align-items:center">
+          <div class="mockup-search" style="flex:1;font-size:10px;border-radius:20px;padding:8px 14px">
+            继续问小树...
+          </div>
+          <div class="mockup-btn primary" style="border-radius:20px;padding:8px 14px">发送</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="key-point fade-up" style="--delay:0.25s;margin-bottom:56px">
+    小树只看这一个项目的文档，不会把其他项目的内容混进来。回答精准，每个结论都有来源。
+  </div>
+
+  <!-- 4.4 自动化 -->
+  <h3 class="fade-up" style="font-size:22px;font-weight:700;margin-bottom:8px;--delay:0.1s">不只是你问AI，AI也会主动找你</h3>
+  <p class="fade-up" style="font-size:15px;color:var(--text-secondary);margin-bottom:8px;max-width:720px;--delay:0.12s">设置定时任务，AI会定期遍历项目中的所有文档，自动执行检查：</p>
+
+  <div class="card-grid card-grid-3 auto-grid fade-up" style="--delay:0.18s;gap:20px;margin-bottom:24px">
+    <div class="auto-card">
+      <div class="auto-card-icon" style="background:var(--primary-bg)">
+        <span style="color:var(--primary);font-size:22px">📋</span>
+      </div>
+      <div class="auto-card-title">资料完整性检查</div>
+      <div class="auto-card-desc">AI自动对比需求清单和已有文档，告诉你"还缺什么"——不是等到验收时才发现，而是每周自动检查一次。</div>
+    </div>
+    <div class="auto-card">
+      <div class="auto-card-icon" style="background:var(--accent-bg)">
+        <span style="color:var(--accent);font-size:22px">📄</span>
+      </div>
+      <div class="auto-card-title">验收文档自动生成</div>
+      <div class="auto-card-desc">当AI判断需求文档、技术方案、测试报告、部署文档都齐全了，自动生成验收文档草稿，项目经理只需要审核确认。</div>
+    </div>
+    <div class="auto-card">
+      <div class="auto-card-icon" style="background:#FEF3C7">
+        <span style="color:#D97706;font-size:22px">⚠️</span>
+      </div>
+      <div class="auto-card-title">风险预警</div>
+      <div class="auto-card-desc">AI扫描所有文档，识别"待定"、"TBD"、"未确认"等关键词，发现潜在风险主动推送提醒。</div>
+    </div>
+  </div>
+
+  <div class="key-point fade-up" style="--delay:0.25s;margin-bottom:56px">
+    不需要人盯着，AI自己跑。定好规则，剩下的交给平台。
+  </div>
+
+  <!-- 4.5 项目工作台全貌 -->
+  <h3 class="fade-up" style="font-size:22px;font-weight:700;margin-bottom:8px;--delay:0.1s">所有这些能力，统一在一个工作台里</h3>
+  <p class="fade-up" style="font-size:15px;color:var(--text-secondary);margin-bottom:24px;--delay:0.15s">文件管理、AI对话、自动化任务、进度追踪——打开项目工作台，一切尽在掌握。</p>
+
+  <div class="mockup-frame fade-up" style="--delay:0.2s">
+    <div class="mockup-title-bar">
+      <span class="mockup-dot red"></span>
+      <span class="mockup-dot yellow"></span>
+      <span class="mockup-dot green"></span>
+      <span style="margin-left:8px">项目工作台 — Q3产品发版计划 — 智慧城市</span>
+    </div>
+    <div style="display:flex;min-height:480px">
+      <!-- Sidebar -->
+      <div class="mockup-sidebar" style="min-width:170px;flex-shrink:0">
+        <div style="font-size:11px;font-weight:700;color:#fff;padding:8px;margin-bottom:4px;border-bottom:1px solid rgba(255,255,255,0.1)">Q3产品发版计划<br><span style="font-size:9px;color:#a8a29e;font-weight:400">智慧城市</span></div>
+        <!-- File Section -->
+        <div style="padding:4px 8px;font-size:8px;color:#78716c;text-transform:uppercase;letter-spacing:1px;margin-top:6px">文件</div>
+        <div class="mockup-sidebar-folder">
+          <svg style="width:10px;height:10px;fill:#f59e0b;stroke:none"><use href="#icon-folder"/></svg>
+          需求阶段 (5)
+        </div>
+        <div class="mockup-sidebar-file">
+          <span style="color:#10b981;font-size:8px">✓</span>
+          产品需求文档_v3.2.docx
+        </div>
+        <div class="mockup-sidebar-file">
+          <span style="color:#10b981;font-size:8px">✓</span>
+          验收标准清单.xlsx
+        </div>
+        <div class="mockup-sidebar-folder">
+          <svg style="width:10px;height:10px;fill:#f59e0b;stroke:none"><use href="#icon-folder"/></svg>
+          设计阶段 (3)
+        </div>
+        <div class="mockup-sidebar-file">
+          <span style="color:#10b981;font-size:8px">✓</span>
+          技术方案_v2.3.md
+        </div>
+        <div class="mockup-sidebar-file">
+          <span style="color:#10b981;font-size:8px">✓</span>
+          API接口设计.pdf
+        </div>
+        <div class="mockup-sidebar-folder">
+          <svg style="width:10px;height:10px;fill:#f59e0b;stroke:none"><use href="#icon-folder"/></svg>
+          开发阶段 (4)
+        </div>
+        <div class="mockup-sidebar-file">
+          <span style="color:#10b981;font-size:8px">✓</span>
+          前端开发计划.xlsx
+        </div>
+        <div class="mockup-sidebar-file">
+          <span style="color:#10b981;font-size:8px">✓</span>
+          后端架构设计.md
+        </div>
+        <div class="mockup-sidebar-folder">
+          <svg style="width:10px;height:10px;fill:#f59e0b;stroke:none"><use href="#icon-folder"/></svg>
+          会议纪要 (6)
+        </div>
+        <div class="mockup-sidebar-file">
+          <span style="color:#10b981;font-size:8px">✓</span>
+          第12周例会纪要.md
+        </div>
+        <div class="mockup-sidebar-file">
+          <span style="color:#10b981;font-size:8px">✓</span>
+          技术评审会议记录.docx
+        </div>
+        <div class="mockup-sidebar-folder">
+          <svg style="width:10px;height:10px;fill:#f59e0b;stroke:none"><use href="#icon-folder"/></svg>
+          测试 (2)
+        </div>
+        <div class="mockup-sidebar-file">
+          <span style="color:#10b981;font-size:8px">✓</span>
+          测试计划.md
+        </div>
+        <div class="mockup-sidebar-file">
+          <span style="color:#f59e0b;font-size:8px">○</span>
+          <span style="color:#d97706">性能测试报告.pdf</span>
+        </div>
+        <!-- Skills Section -->
+        <div style="padding:4px 8px;font-size:8px;color:#78716c;text-transform:uppercase;letter-spacing:1px;margin-top:10px">技能</div>
+        <div class="mockup-sidebar-item" style="color:#a8a29e;font-size:9px">📄 验收报告模板</div>
+        <div class="mockup-sidebar-item" style="color:#a8a29e;font-size:9px">📊 周报生成</div>
+        <!-- Members Section -->
+        <div style="padding:4px 8px;font-size:8px;color:#78716c;text-transform:uppercase;letter-spacing:1px;margin-top:10px">成员</div>
+        <div style="display:flex;gap:3px;padding:4px 8px;flex-wrap:wrap">
+          <span style="width:22px;height:22px;border-radius:50%;background:#6366F1;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;font-weight:600">PM</span>
+          <span style="width:22px;height:22px;border-radius:50%;background:#0D9488;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;font-weight:600">FE</span>
+          <span style="width:22px;height:22px;border-radius:50%;background:#F59E0B;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;font-weight:600">BE</span>
+          <span style="width:22px;height:22px;border-radius:50%;background:#8B5CF6;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;font-weight:600">QA</span>
+          <span style="width:22px;height:22px;border-radius:50%;background:#EF4444;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;font-weight:600">LD</span>
+        </div>
+      </div>
+      <!-- Main Content -->
+      <div style="flex:1;display:flex;flex-direction:column;min-width:0">
+        <!-- Tab Bar -->
+        <div style="padding:8px 12px;border-bottom:1px solid var(--border);display:flex;gap:4px;flex-wrap:wrap">
+          <span class="mockup-tab active">概览</span>
+          <span class="mockup-tab">待办</span>
+          <span class="mockup-tab">小树AI</span>
+          <span class="mockup-tab">算子</span>
+          <span class="mockup-tab">定时任务</span>
+          <span class="mockup-tab">协作</span>
+        </div>
+        <!-- Content: Overview Tab -->
+        <div style="padding:12px;flex:1;font-size:10px;overflow:hidden">
+          <!-- Stats Row -->
+          <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:16px">
+            <div class="mockup-stat"><div class="mockup-stat-num">23</div><div class="mockup-stat-label">文档</div></div>
+            <div class="mockup-stat"><div class="mockup-stat-num">156</div><div class="mockup-stat-label">切片</div></div>
+            <div class="mockup-stat"><div class="mockup-stat-num">5</div><div class="mockup-stat-label">成员</div></div>
+            <div class="mockup-stat"><div class="mockup-stat-num" style="color:var(--accent)">12/15</div><div class="mockup-stat-label">需求</div></div>
+            <div class="mockup-stat"><div class="mockup-stat-num" style="color:#F59E0B">67%</div><div class="mockup-stat-label">预算</div></div>
+            <div class="mockup-stat"><div class="mockup-stat-num" style="color:#8B5CF6">45</div><div class="mockup-stat-label">AI对话</div></div>
+          </div>
+          <!-- Verification Table -->
+          <div style="margin-bottom:16px">
+            <div style="font-weight:600;margin-bottom:8px;color:var(--text);font-size:10px">验收标准 vs PRD需求</div>
+            <table class="cmp-table" style="font-size:9px">
+              <thead><tr><th>验收标准</th><th>PRD需求</th><th>状态</th></tr></thead>
+              <tbody>
+                <tr><td>文档上传支持PDF/Word</td><td>PRD-001 多格式上传</td><td><span class="mockup-badge green">匹配</span></td></tr>
+                <tr><td>知识检索响应 &lt; 3s</td><td>PRD-005 检索性能</td><td><span class="mockup-badge green">匹配</span></td></tr>
+                <tr><td>权限申请审批流程</td><td>PRD-012 权限管理</td><td><span class="mockup-badge orange">进行中</span></td></tr>
+                <tr><td>性能测试报告</td><td>PRD-008 性能指标</td><td><span class="mockup-badge red">待补充</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Gantt Progress -->
+          <div style="margin-bottom:16px">
+            <div style="font-weight:600;margin-bottom:8px;color:var(--text);font-size:10px">项目进度</div>
+            <div class="gantt-row">
+              <div class="gantt-label">需求分析</div>
+              <div class="gantt-track"><div class="gantt-bar" style="left:0;width:100%;background:#10B981">100%</div></div>
+            </div>
+            <div class="gantt-row">
+              <div class="gantt-label">UI设计</div>
+              <div class="gantt-track"><div class="gantt-bar" style="left:20%;width:60%;background:#4F46E5">75%</div></div>
+            </div>
+            <div class="gantt-row">
+              <div class="gantt-label">开发实现</div>
+              <div class="gantt-track"><div class="gantt-bar" style="left:40%;width:30%;background:#F59E0B">30%</div></div>
+            </div>
+          </div>
+          <!-- AI Alert -->
+          <div style="background:#FEF3C7;border:1px solid #FDE68A;border-radius:6px;padding:10px 14px;font-size:10px;color:#92400E;display:flex;align-items:center;gap:8px">
+            <span style="font-size:14px">⚠️</span>
+            <span>AI提醒：性能测试报告尚未上传，影响验收标准第3条</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ===== Section 05: 第三层：共性能力平台 ===== -->
+<section class="section" id="s5">
+<div class="container">
+  <span class="section-label fade-up">Section 05</span>
+  <h2 class="section-title fade-up" style="--delay:0.1s">第三层：所有项目汇聚，加上平台级AI能力</h2>
+  <p class="section-desc fade-up" style="--delay:0.15s">多个项目空间汇聚之后，平台级的AI能力自然浮现。传统的做法是每个知识库各自为政，文档之间互不相通。而在共性能力平台上，所有项目的知识可以跨域检索、能力可以跨项目复用。</p>
+
+  <!-- 跨项目知识检索 -->
+  <div class="platform-feature fade-up" style="--delay:0.2s">
+    <div class="platform-feature-title"><span style="color:var(--primary)">🔍</span> 跨项目知识检索</div>
+    <div class="platform-feature-desc">在平台搜索一个问题，结果来自不同项目的知识库。比如搜"微服务架构"，能同时看到智慧城市项目的技术方案和数据中台项目的架构设计。</div>
+    <div class="mockup-frame">
+      <div class="mockup-title-bar">
+        <span class="mockup-dot red"></span>
+        <span class="mockup-dot yellow"></span>
+        <span class="mockup-dot green"></span>
+        <span style="margin-left:8px">跨项目知识检索</span>
+      </div>
+      <div class="mockup-body" style="padding:16px">
+        <div class="mockup-search" style="padding:10px 14px;font-size:12px;margin-bottom:12px;border-radius:8px">
+          <svg style="width:14px;height:14px;fill:none;stroke:#999;stroke-width:2"><use href="#icon-search"/></svg>
+          微服务架构
+        </div>
+        <div style="font-size:10px;color:var(--text-muted);margin-bottom:10px">找到 8 条相关结果</div>
+        <!-- Result 1 -->
+        <div style="border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin-bottom:8px;background:#fff">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+            <div style="display:flex;align-items:center;gap:6px">
+              <span style="font-weight:600;font-size:11px">技术方案_v2.3 — 第2章 系统架构</span>
+              <span class="mockup-badge blue">智慧城市</span>
+            </div>
+            <span style="font-weight:700;color:var(--accent);font-size:11px">94%</span>
+          </div>
+          <div style="font-size:10px;color:var(--text-secondary);line-height:1.5">...系统采用微服务架构，服务间通过API Gateway统一管理，核心服务包括用户中心、知识引擎、任务调度...</div>
+        </div>
+        <!-- Result 2 -->
+        <div style="border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin-bottom:8px;background:#fff">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+            <div style="display:flex;align-items:center;gap:6px">
+              <span style="font-weight:600;font-size:11px">数据中台架构设计 — 服务拆分策略</span>
+              <span class="mockup-badge purple">数据中台</span>
+            </div>
+            <span style="font-weight:700;color:var(--accent);font-size:11px">89%</span>
+          </div>
+          <div style="font-size:10px;color:var(--text-secondary);line-height:1.5">...数据采集、清洗、存储、分析各自独立部署，通过消息队列解耦，支持弹性扩缩容...</div>
+        </div>
+        <!-- Result 3 -->
+        <div style="border:1px solid var(--border);border-radius:8px;padding:10px 12px;background:#fff">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+            <div style="display:flex;align-items:center;gap:6px">
+              <span style="font-weight:600;font-size:11px">供应链平台技术评审记录</span>
+              <span class="mockup-badge teal">供应链</span>
+            </div>
+            <span style="font-weight:700;color:var(--accent);font-size:11px">82%</span>
+          </div>
+          <div style="font-size:10px;color:var(--text-secondary);line-height:1.5">...评审结论：采用微服务架构，一期先做订单服务和库存服务，物流服务二期迭代...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 应用集市 -->
+  <div class="platform-feature fade-up" style="--delay:0.25s">
+    <div class="platform-feature-title"><span style="color:#8B5CF6">🏪</span> 应用集市：公司做了哪些AI工具，一页看全</div>
+    <div class="platform-feature-desc">公司各部门陆续做了不少AI应用，但没有统一入口，员工不知道有什么、在哪里、能不能用。应用集市解决这个问题：所有AI应用集中展示、分类检索、一键试用或申请权限。</div>
+
+    <div class="mockup-frame" style="margin-top:16px">
+      <div class="mockup-title-bar">
+        <span class="mockup-dot red"></span><span class="mockup-dot yellow"></span><span class="mockup-dot green"></span>
+        <span style="margin-left:8px">应用集市</span>
+      </div>
+      <div class="mockup-body" style="padding:16px">
+        <!-- 搜索和筛选 -->
+        <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+          <div class="mockup-search" style="flex:1;min-width:180px">
+            <svg style="width:12px;height:12px;fill:none;stroke:#999;stroke-width:2"><use href="#icon-search"/></svg>
+            搜索应用名称、功能描述...
+          </div>
+          <div class="mockup-input" style="min-width:80px">全部类型 ▾</div>
+          <div class="mockup-input" style="min-width:80px">全部类别 ▾</div>
+        </div>
+        <div style="display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap">
+          <span class="mockup-tab active">推荐</span>
+          <span class="mockup-tab">办公提效</span>
+          <span class="mockup-tab">数据分析</span>
+          <span class="mockup-tab">采购管理</span>
+          <span class="mockup-tab">知识管理</span>
+        </div>
+        <!-- 应用卡片 -->
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+          <!-- App 1 -->
+          <div style="border:1px solid var(--border);border-radius:8px;padding:14px;background:#fff">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+              <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#6366F1,#818CF8);display:flex;align-items:center;justify-content:center;font-size:14px">📝</div>
+              <div>
+                <div style="font-weight:600;font-size:11px">智能会议纪要</div>
+                <div style="font-size:9px;color:var(--text-muted)">人工智能中心</div>
+              </div>
+            </div>
+            <div style="font-size:10px;color:var(--text-secondary);margin-bottom:8px;line-height:1.5">自动生成会议纪要、行动项与待办分工，支持音频上传转文字。</div>
+            <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px">
+              <span class="mockup-badge blue">办公提效</span>
+              <span class="mockup-badge green">即点即用</span>
+            </div>
+          </div>
+          <!-- App 2 -->
+          <div style="border:1px solid var(--border);border-radius:8px;padding:14px;background:#fff">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+              <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#10B981,#34D399);display:flex;align-items:center;justify-content:center;font-size:14px">📊</div>
+              <div>
+                <div style="font-weight:600;font-size:11px">经营分析助手</div>
+                <div style="font-size:9px;color:var(--text-muted)">数据中心</div>
+              </div>
+            </div>
+            <div style="font-size:10px;color:var(--text-secondary);margin-bottom:8px;line-height:1.5">用自然语言提问，快速生成图表洞察。月度经营复盘、专题分析。</div>
+            <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px">
+              <span class="mockup-badge blue">数据分析</span>
+              <span class="mockup-badge orange">需申请权限</span>
+            </div>
+          </div>
+          <!-- App 3 -->
+          <div style="border:1px solid var(--border);border-radius:8px;padding:14px;background:#fff">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+              <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#8B5CF6,#A78BFA);display:flex;align-items:center;justify-content:center;font-size:14px">🤖</div>
+              <div>
+                <div style="font-weight:600;font-size:11px">办公助手</div>
+                <div style="font-size:9px;color:var(--text-muted)">人工智能中心</div>
+              </div>
+            </div>
+            <div style="font-size:10px;color:var(--text-secondary);margin-bottom:8px;line-height:1.5">多智能体协作办公，深度研究、资料整理、多轮问答、长任务编排。</div>
+            <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px">
+              <span class="mockup-badge blue">办公提效</span>
+              <span class="mockup-badge green">即点即用</span>
+            </div>
+          </div>
+          <!-- App 4 -->
+          <div style="border:1px solid var(--border);border-radius:8px;padding:14px;background:#fff">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+              <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#0D9488,#14B8A6);display:flex;align-items:center;justify-content:center;font-size:14px">📚</div>
+              <div>
+                <div style="font-weight:600;font-size:11px">知识助手</div>
+                <div style="font-size:9px;color:var(--text-muted)">人工智能中心</div>
+              </div>
+            </div>
+            <div style="font-size:10px;color:var(--text-secondary);margin-bottom:8px;line-height:1.5">面向企业知识检索与问答，快速查询制度、流程、资料与业务知识。</div>
+            <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px">
+              <span class="mockup-badge blue">知识管理</span>
+              <span class="mockup-badge green">即点即用</span>
+            </div>
+          </div>
+          <!-- App 5 -->
+          <div style="border:1px solid var(--border);border-radius:8px;padding:14px;background:#fff">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+              <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#F59E0B,#FBBF24);display:flex;align-items:center;justify-content:center;font-size:14px">🔍</div>
+              <div>
+                <div style="font-weight:600;font-size:11px">供应商资料审查</div>
+                <div style="font-size:9px;color:var(--text-muted)">采购部</div>
+              </div>
+            </div>
+            <div style="font-size:10px;color:var(--text-secondary);margin-bottom:8px;line-height:1.5">结合OCR与规则引擎审查供应商材料，自动解析、风险规则、人工复核。</div>
+            <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px">
+              <span class="mockup-badge blue">采购管理</span>
+              <span class="mockup-badge orange">需申请权限</span>
+            </div>
+          </div>
+          <!-- App 6 - placeholder -->
+          <div style="border:1px dashed var(--border);border-radius:8px;padding:14px;background:#fafafa;display:flex;align-items:center;justify-content:center;min-height:100px">
+            <div style="text-align:center;color:var(--text-muted);font-size:10px">
+              <div style="font-size:20px;margin-bottom:4px">+</div>
+              <div>更多应用持续上架中...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 权限机制说明 -->
+    <div style="margin-top:16px;padding:16px;background:var(--primary-bg);border-radius:10px;border:1px solid rgba(79,70,229,0.1)">
+      <div style="font-weight:600;font-size:14px;margin-bottom:8px;color:var(--primary)">权限机制：不是所有应用都能随便用</div>
+      <div style="font-size:13px;color:var(--text-secondary);line-height:1.8">
+        <strong style="color:var(--text)">通用型应用</strong>（如会议纪要、知识助手）：全员即点即用，不需要审批。<br>
+        <strong style="color:var(--text)">专用型应用</strong>（如供应商审查、经营分析）：涉及敏感数据，需要提交申请——说明用途、使用时长、使用环境，管理员审核通过后才能使用。权限到期自动回收，不用人工盯着。<br>
+        <strong style="color:var(--text)">管理者视角</strong>：后台能看到谁在用什么、用了多久、什么时候到期。批量审批、一键续期、随时收回，所有操作都有审计记录。
+      </div>
+    </div>
+  </div>
+
+  <!-- 技能市场 -->
+  <div class="platform-feature fade-up" style="--delay:0.3s">
+    <div class="platform-feature-title"><span style="color:#F59E0B">⚡</span> 技能市场：把AI提示词经验沉淀下来，团队复用</div>
+    <div class="platform-feature-desc">
+      不同部门经常写类似的AI提示词，有人写得好，有人写得差，经验无法沉淀。技能市场把高质量的提示词模板打包成"技能"——项目方案怎么生成、合同风险怎么审查、技术文档怎么润色——选一个技能、填几个参数，AI按专业流程帮你干活。
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px">
+      <!-- Skill 1 -->
+      <div style="border:1px solid var(--border);border-radius:10px;padding:16px;background:#fff">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+          <span class="mockup-badge blue">内容生成</span>
+          <span style="font-size:10px;color:#F59E0B">★ 4.8</span>
+        </div>
+        <div style="font-weight:600;font-size:13px;margin-bottom:6px">项目方案大纲生成</div>
+        <div style="font-size:11px;color:var(--text-secondary);margin-bottom:10px;line-height:1.5">输入项目背景和行业，AI按标准方案结构生成大纲，包含目标、架构、实施计划、预算等章节。</div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:10px;color:var(--text-muted)">已使用 342 次</span>
+          <span class="mockup-btn primary">使用技能</span>
+        </div>
+      </div>
+      <!-- Skill 2 -->
+      <div style="border:1px solid var(--border);border-radius:10px;padding:16px;background:#fff">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+          <span class="mockup-badge orange">审查校对</span>
+          <span style="font-size:10px;color:#F59E0B">★ 4.6</span>
+        </div>
+        <div style="font-weight:600;font-size:13px;margin-bottom:6px">合同条款风险审查</div>
+        <div style="font-size:11px;color:var(--text-secondary);margin-bottom:10px;line-height:1.5">上传合同文本，AI逐条审查风险条款，标注违约责任、付款条件、知识产权等关键风险点。</div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:10px;color:var(--text-muted)">已使用 218 次</span>
+          <span class="mockup-btn primary">使用技能</span>
+        </div>
+      </div>
+      <!-- Skill 3 -->
+      <div style="border:1px solid var(--border);border-radius:10px;padding:16px;background:#fff">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+          <span class="mockup-badge green">文档写作</span>
+          <span style="font-size:10px;color:#F59E0B">★ 4.9</span>
+        </div>
+        <div style="font-weight:600;font-size:13px;margin-bottom:6px">技术文档润色</div>
+        <div style="font-size:11px;color:var(--text-secondary);margin-bottom:10px;line-height:1.5">优化技术文档的可读性和专业性，统一术语、补充上下文、调整逻辑结构，不改技术内容。</div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:10px;color:var(--text-muted)">已使用 567 次</span>
+          <span class="mockup-btn primary">使用技能</span>
+        </div>
+      </div>
+      <!-- Skill 4 -->
+      <div style="border:1px solid var(--border);border-radius:10px;padding:16px;background:#fff">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+          <span class="mockup-badge green">文档写作</span>
+          <span style="font-size:10px;color:#F59E0B">★ 4.5</span>
+        </div>
+        <div style="font-weight:600;font-size:13px;margin-bottom:6px">会议纪要整理</div>
+        <div style="font-size:11px;color:var(--text-secondary);margin-bottom:10px;line-height:1.5">上传会议录音或速记，AI提取议题、决策、行动项、负责人和截止日期，生成结构化纪要。</div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:10px;color:var(--text-muted)">已使用 189 次</span>
+          <span class="mockup-btn primary">使用技能</span>
+        </div>
+      </div>
+      <!-- Skill 5 -->
+      <div style="border:1px solid var(--border);border-radius:10px;padding:16px;background:#fff">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+          <span class="mockup-badge blue">数据分析</span>
+          <span style="font-size:10px;color:#F59E0B">★ 4.7</span>
+        </div>
+        <div style="font-weight:600;font-size:13px;margin-bottom:6px">数据分析报告</div>
+        <div style="font-size:11px;color:var(--text-secondary);margin-bottom:10px;line-height:1.5">上传数据表格，AI自动发现趋势、异常和规律，生成带图表描述的数据分析报告。</div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:10px;color:var(--text-muted)">已使用 156 次</span>
+          <span class="mockup-btn primary">使用技能</span>
+        </div>
+      </div>
+      <!-- Skill 6 -->
+      <div style="border:1px solid var(--border);border-radius:10px;padding:16px;background:#fff">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+          <span class="mockup-badge" style="background:#fce7f3;color:#9d174d">翻译</span>
+          <span style="font-size:10px;color:#F59E0B">★ 4.8</span>
+        </div>
+        <div style="font-weight:600;font-size:13px;margin-bottom:6px">英文技术翻译</div>
+        <div style="font-size:11px;color:var(--text-secondary);margin-bottom:10px;line-height:1.5">专业技术文档中英互译，保留技术术语准确性，支持按行业术语表定制翻译风格。</div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:10px;color:var(--text-muted)">已使用 298 次</span>
+          <span class="mockup-btn primary">使用技能</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:12px;font-size:13px;color:var(--text-secondary)">
+      <strong style="color:var(--text)">官方技能</strong>由平台团队维护质量，<strong style="color:var(--text)">社区技能</strong>由各部门贡献——也可以自己创建自定义技能，添加到项目空间使用。每个技能都有使用次数和评分，好用的自然浮上来。
+    </div>
+  </div>
+
+  <!-- 办公助手 -->
+  <div class="platform-feature fade-up" style="--delay:0.35s">
+    <div class="platform-feature-title"><span style="color:var(--accent)">💬</span> 办公助手：AI对话 + 模板化文档生成，一个入口两件事</div>
+    <div class="platform-feature-desc">
+      左边是嵌入的DeerFlow对话AI，可以自由问答、多轮对话、深度研究；右边是文档生成面板，选择模板、填写参数，AI结合企业知识库自动生成正式文档。不需要在聊天工具和文档编辑器之间来回切换。
+    </div>
+
+    <div class="mockup-frame" style="margin-top:16px">
+      <div class="mockup-title-bar">
+        <span class="mockup-dot red"></span><span class="mockup-dot yellow"></span><span class="mockup-dot green"></span>
+        <span style="margin-left:8px">办公助手 — 智能问答 & 文档生成</span>
+      </div>
+      <div class="mockup-body" style="padding:0;display:flex">
+        <!-- 左半：对话 -->
+        <div style="flex:1;border-right:1px solid var(--border);padding:14px;display:flex;flex-direction:column">
+          <div style="font-size:10px;font-weight:600;margin-bottom:10px;color:var(--text-muted)">💬 DeerFlow 对话</div>
+          <div style="flex:1;display:flex;flex-direction:column;gap:8px;margin-bottom:10px">
+            <div class="mockup-chat-bubble user" style="align-self:flex-end">帮我整理一下上周关于供应链项目的技术评审要点</div>
+            <div class="mockup-chat-bubble ai" style="align-self:flex-start">根据技术评审记录，上周供应链项目评审要点如下：<br><br>1. <b>架构方案</b>：采用微服务架构，订单和库存服务一期上线<br>2. <b>技术选型</b>：后端Spring Boot + Redis，前端React<br>3. <b>风险项</b>：物流模块接口设计待确认（负责人：李工）<br>4. <b>下次评审</b>：3月28日，需完成接口设计文档</div>
+          </div>
+          <div style="display:flex;gap:6px">
+            <div style="flex:1;border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:10px;color:#999">输入问题...</div>
+            <span class="mockup-btn primary">发送</span>
+          </div>
+        </div>
+        <!-- 右半：文档生成 -->
+        <div style="flex:1;padding:14px;display:flex;flex-direction:column">
+          <div style="font-size:10px;font-weight:600;margin-bottom:10px;color:var(--text-muted)">📄 文档生成</div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:10px">
+            <div style="display:flex;align-items:center;gap:6px">
+              <span style="font-size:9px;color:var(--text-secondary);width:50px;flex-shrink:0">生成类型</span>
+              <div class="mockup-input" style="flex:1">会议纪要整理 ▾</div>
+            </div>
+            <div style="display:flex;align-items:start;gap:6px">
+              <span style="font-size:9px;color:var(--text-secondary);width:50px;flex-shrink:0">项目背景</span>
+              <div class="mockup-input" style="flex:1;min-height:32px;text-align:left">供应链优化项目，第三阶段技术评审...</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px">
+              <span style="font-size:9px;color:var(--text-secondary);width:50px;flex-shrink:0">输出风格</span>
+              <span style="font-size:9px;color:var(--primary)">● 正式</span>
+              <span style="font-size:9px;color:var(--text-muted)">○ 简洁</span>
+              <span style="font-size:9px;color:var(--text-muted)">○ 详细</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:6px">
+              <span style="font-size:9px;color:var(--text-secondary);width:50px;flex-shrink:0">目标字数</span>
+              <div class="mockup-input" style="width:60px">3000</div>
+            </div>
+          </div>
+          <span class="mockup-btn primary" style="align-self:flex-start;margin-bottom:10px">生成草稿</span>
+          <!-- 生成结果预览 -->
+          <div style="flex:1;border:1px solid var(--border);border-radius:6px;padding:8px;background:#fafafa;font-size:9px;color:var(--text-secondary);line-height:1.6;overflow:hidden">
+            <div style="font-weight:600;margin-bottom:4px;color:var(--text)">供应链项目技术评审纪要</div>
+            <div>一、评审概述<br>会议时间：2026年3月21日<br>参会人员：张伟（架构）、李明（后端）...<br><br>二、评审要点<br>1. 架构方案确定采用微服务架构...<br>2. 技术选型...<br><br><span style="color:var(--text-muted)">[ 引用来源：技术评审记录.docx | 第12周例会纪要.md ]</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:12px;font-size:13px;color:var(--text-secondary)">
+      生成的文档不是凭空编造的——AI会引用企业知识库中的真实内容作为来源，每段结论都能追溯出处。支持多种模板：项目方案大纲、会议纪要整理、合同审查报告、竞品分析、验收文档等。
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ===== Section 06: 管理后台 ===== -->
+<section class="section" id="s6">
+<div class="container">
+  <span class="section-label fade-up">Section 06</span>
+  <h2 class="section-title fade-up" style="--delay:0.1s">管理后台：治理与运营</h2>
+  <p class="section-desc fade-up" style="--delay:0.15s">管理员一个后台搞定所有治理——权限、审核、模型配置、运营数据、审计日志，一站搞定。</p>
+
+  <!-- Small dashboard mockup -->
+  <div class="mockup-frame fade-up" style="--delay:0.2s;margin-bottom:28px">
+    <div class="mockup-title-bar">
+      <span class="mockup-dot red"></span>
+      <span class="mockup-dot yellow"></span>
+      <span class="mockup-dot green"></span>
+      <span style="margin-left:8px">管理后台 — 仪表盘</span>
+    </div>
+    <div class="mockup-body" style="padding:16px">
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+        <div style="text-align:center;padding:12px;background:#FEF2F2;border-radius:8px">
+          <div style="font-size:24px;font-weight:700;color:#EF4444">5</div>
+          <div style="font-size:10px;color:var(--text-muted)">待审核</div>
+        </div>
+        <div style="text-align:center;padding:12px;background:var(--primary-bg);border-radius:8px">
+          <div style="font-size:24px;font-weight:700;color:var(--primary)">238</div>
+          <div style="font-size:10px;color:var(--text-muted)">活跃用户</div>
+        </div>
+        <div style="text-align:center;padding:12px;background:var(--accent-bg);border-radius:8px">
+          <div style="font-size:24px;font-weight:700;color:var(--accent)">12</div>
+          <div style="font-size:10px;color:var(--text-muted)">应用总数</div>
+        </div>
+        <div style="text-align:center;padding:12px;background:#FEF3C7;border-radius:8px">
+          <div style="font-size:24px;font-weight:700;color:#D97706">3</div>
+          <div style="font-size:10px;color:var(--text-muted)">到期预警</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Points -->
+  <div class="card-grid admin-grid" style="grid-template-columns:1fr;gap:12px">
+    <div class="admin-point fade-up" style="--delay:0.25s">
+      <div class="admin-point-icon" style="background:var(--primary)">🔑</div>
+      <div>
+        <div class="admin-point-title">权限管理</div>
+        <div class="admin-point-desc">谁能用什么应用、权限多久到期、到期自动回收，不用人工盯着</div>
+      </div>
+    </div>
+    <div class="admin-point fade-up" style="--delay:0.3s">
+      <div class="admin-point-icon" style="background:#8B5CF6">📋</div>
+      <div>
+        <div class="admin-point-title">应用审核</div>
+        <div class="admin-point-desc">敏感应用需审批，批量审核、一键通过/拒绝</div>
+      </div>
+    </div>
+    <div class="admin-point fade-up" style="--delay:0.35s">
+      <div class="admin-point-icon" style="background:var(--accent)">⚙️</div>
+      <div>
+        <div class="admin-point-title">模型配置</div>
+        <div class="admin-point-desc">知识处理模型和文档生成模型独立配置，支持OpenAI兼容接口</div>
+      </div>
+    </div>
+    <div class="admin-point fade-up" style="--delay:0.4s">
+      <div class="admin-point-icon" style="background:#F59E0B">📊</div>
+      <div>
+        <div class="admin-point-title">运营分析</div>
+        <div class="admin-point-desc">看哪些应用在用、哪些部门还没覆盖、投入产出比</div>
+      </div>
+    </div>
+    <div class="admin-point fade-up" style="--delay:0.45s">
+      <div class="admin-point-icon" style="background:#EF4444">📝</div>
+      <div>
+        <div class="admin-point-title">审计日志</div>
+        <div class="admin-point-desc">所有操作有迹可循，合规审计不费力</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ===== Section 07: 技术架构 ===== -->
+<section class="section" id="s7">
+<div class="container">
+  <span class="section-label fade-up">Section 07</span>
+  <h2 class="section-title fade-up" style="--delay:0.1s">技术架构</h2>
+  <p class="section-desc fade-up" style="--delay:0.15s">前后端分离架构，monorepo管理多应用，支持多种国产数据库。</p>
+
+  <!-- Tech Flow -->
+  <div class="tech-flow fade-up" style="--delay:0.2s">
+    <div class="tech-flow-node">
+      <div style="font-size:24px;margin-bottom:4px">👤</div>
+      <div class="tech-flow-node-label">用户</div>
+      <div class="tech-flow-node-desc">浏览器访问</div>
+    </div>
+    <div class="tech-flow-arrow">&rarr;</div>
+    <div class="tech-flow-node" style="border-color:var(--accent)">
+      <div style="font-size:24px;margin-bottom:4px">&#9883;</div>
+      <div class="tech-flow-node-label" style="color:var(--accent)">React 前端</div>
+      <div class="tech-flow-node-desc">SPA应用</div>
+    </div>
+    <div class="tech-flow-arrow">&rarr;</div>
+    <div class="tech-flow-node" style="border-color:#F59E0B">
+      <div style="font-size:24px;margin-bottom:4px">&#9749;</div>
+      <div class="tech-flow-node-label" style="color:#D97706">Spring Boot</div>
+      <div class="tech-flow-node-desc">REST API</div>
+    </div>
+    <div class="tech-flow-arrow">&rarr;</div>
+    <div class="tech-flow-node" style="border-color:var(--primary)">
+      <div style="font-size:24px;margin-bottom:4px">&#128451;</div>
+      <div class="tech-flow-node-label">MySQL</div>
+      <div class="tech-flow-node-desc">数据存储</div>
+    </div>
+  </div>
+
+  <!-- Two-column Cards -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px" class="fade-up" style="--delay:0.3s">
+    <div class="card" style="border-top:4px solid var(--accent)">
+      <h3 style="font-size:18px;font-weight:700;margin-bottom:16px;color:var(--accent)">前端技术栈</h3>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;align-items:center;gap:10px"><span class="badge badge-teal">核心</span><span style="font-size:14px">React 19</span></div>
+        <div style="display:flex;align-items:center;gap:10px"><span class="badge badge-teal">语言</span><span style="font-size:14px">TypeScript</span></div>
+        <div style="display:flex;align-items:center;gap:10px"><span class="badge badge-teal">UI库</span><span style="font-size:14px">Ant Design 5</span></div>
+      </div>
+    </div>
+    <div class="card" style="border-top:4px solid #F59E0B">
+      <h3 style="font-size:18px;font-weight:700;margin-bottom:16px;color:#D97706">后端技术栈</h3>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;align-items:center;gap:10px"><span class="badge badge-orange">语言</span><span style="font-size:14px">Java Spring Boot</span></div>
+        <div style="display:flex;align-items:center;gap:10px"><span class="badge badge-orange">ORM</span><span style="font-size:14px">MyBatis-Plus</span></div>
+        <div style="display:flex;align-items:center;gap:10px"><span class="badge badge-orange">认证</span><span style="font-size:14px">Sa-Token</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Database Badges -->
+  <div style="margin-top:24px;text-align:center" class="fade-up" style="--delay:0.35s">
+    <div style="font-size:14px;font-weight:600;margin-bottom:12px">支持的数据库</div>
+    <div class="db-badges">
+      <span class="db-badge">MySQL</span>
+      <span class="db-badge">H2</span>
+      <span class="db-badge">达梦</span>
+      <span class="db-badge">人大金仓</span>
+      <span class="db-badge">高斯</span>
+    </div>
+  </div>
+
+  <!-- Integration -->
+  <div style="margin-top:20px;text-align:center" class="fade-up" style="--delay:0.4s">
+    <div style="font-size:14px;font-weight:600;margin-bottom:12px">核心集成</div>
+    <div class="integration-row">
+      <div class="integration-badge"><span style="color:var(--primary);font-size:18px">🤖</span> DeerFlow (AI Agent)</div>
+      <div class="integration-badge"><span style="color:var(--accent);font-size:18px">📚</span> Enterprise Knowledge (RAG)</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ===== Section 08: 总结 ===== -->
+<section class="section" id="s8">
+<div class="container">
+  <span class="section-label fade-up">总结</span>
+  <h2 class="section-title fade-up" style="--delay:0.1s">平台总结与路线图</h2>
+
+  <div class="summary-box fade-up" style="--delay:0.2s">
+    <div class="summary-title">核心价值</div>
+    <div class="summary-desc">
+      企业AI共性能力平台是连接"AI技术"和"业务价值"的桥梁——从每个人的文档处理，到每个项目的AI助手，再到全公司的能力底座。统一入口、统一管理、统一沉淀，让每一个项目的知识不再散落，让企业的每一份AI投入都能被看见、被复用、被度量。
+    </div>
+  </div>
+
+  <!-- Roadmap -->
+  <div style="margin-top:32px;overflow-x:auto" class="fade-up" style="--delay:0.3s">
+    <h3 style="font-size:18px;font-weight:600;margin-bottom:16px;text-align:center">发展路线图</h3>
+    <table class="roadmap-table">
+      <thead>
+        <tr><th>阶段</th><th>时间</th><th>核心目标</th><th>关键能力</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="badge badge-green">试点期</span></td>
+          <td>2026.3 — 2026.6</td>
+          <td>应用集市 + 文档处理</td>
+          <td>AI应用上架、发现、申请、文档智能处理引擎、权限管理</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-blue">平台期</span></td>
+          <td>2026.7 — 2026.12</td>
+          <td>项目共享空间 + 能力中台</td>
+          <td>项目空间、小树AI、技能市场、自动化任务、跨项目检索</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-purple">原生期</span></td>
+          <td>2027</td>
+          <td>智能体协作网络</td>
+          <td>DeerFlow Agent编排、跨应用工作流、自动任务分发</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-orange">生态期</span></td>
+          <td>2028+</td>
+          <td>企业智能体操作系统</td>
+          <td>开放API、第三方技能生态、企业间知识共享网络</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+<div class="container">
+  <p><strong>企业AI共性能力平台</strong> &nbsp;|&nbsp; Version v1.0 &nbsp;|&nbsp; 2026-05-25</p>
+  <p style="margin-top:8px;font-size:13px;opacity:0.7">Enterprise AI Common Capability Platform &mdash; Product Introduction</p>
+</div>
+</footer>
+
+<!-- ===== Back to Top ===== -->
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="回到顶部">&#8593;</button>
+
+<!-- ===== JavaScript ===== -->
+<script>
+(function(){
+  // 1. Nav show/hide on scroll (IntersectionObserver on hero)
+  var nav = document.getElementById('mainNav');
+  var hero = document.getElementById('hero');
+  var heroObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        nav.classList.remove('visible');
+      } else {
+        nav.classList.add('visible');
+      }
+    });
+  }, {threshold: 0.1});
+  heroObserver.observe(hero);
+
+  // 2. Active section highlighting
+  var navLinks = nav.querySelectorAll('a[href^="#"]');
+  var sections = document.querySelectorAll('.section');
+  var sectionObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        var id = entry.target.id;
+        navLinks.forEach(function(link){
+          link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, {threshold: 0.2, rootMargin: '-80px 0px -40% 0px'});
+  sections.forEach(function(s){ sectionObserver.observe(s); });
+
+  // 3. Staggered fade-in animations
+  var fadeEls = document.querySelectorAll('.fade-up');
+  var fadeObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        var delay = getComputedStyle(entry.target).getPropertyValue('--delay') || '0s';
+        var ms = parseFloat(delay) * 1000;
+        setTimeout(function(){ entry.target.classList.add('visible'); }, ms);
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.1});
+  fadeEls.forEach(function(el){ fadeObserver.observe(el); });
+
+  // Also handle .section fade-in
+  var sectionFadeObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        sectionFadeObserver.unobserve(entry.target);
+      }
+    });
+  }, {threshold: 0.05});
+  sections.forEach(function(s){ sectionFadeObserver.observe(s); });
+
+  // 4. Back to top button
+  var backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > 600){
+      backTop.classList.add('visible');
+    } else {
+      backTop.classList.remove('visible');
+    }
+  }, {passive: true});
+})();
+</script>
+</body>
+</html>
